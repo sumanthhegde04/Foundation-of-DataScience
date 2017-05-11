@@ -1,2 +1,2 @@
 # Foundation-of-DataScience
-Foundation of Datascience Projects and Mini projects
+Foundation of Datascience Projects 
