@@ -1,0 +1,54 @@
+---
+title: "FinalProjectProposal"
+author: "Rstudio"
+date: "May 18, 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Project Name:
+
+Youth Tobacco Survey (YTS)
+
+
+
+2) Who is your client and why do they care about this problem? In other words, what will your client DO or DECIDE based on your analysis that they wouldn't have otherwise?
+
+My Client is U.S. Department of Health & Human Services and this article was published by Centers for Disease Control and Prevention. The YTS was developed to provide states with comprehensive data on both middle school and high school students regarding tobacco use, exposure to environmental tobacco smoke, smoking cessation, school curriculum, minors' ability to purchase or otherwise obtain tobacco products, knowledge and attitudes about tobacco, and familiarity with pro-tobacco and anti-tobacco media messages. 
+
+My Goal would be working How middle school (6th to 8th) grade and High school grade students from (9th to 12th) are getting impact of Tobacco exposure and other familiarity with pro-tobacco and anti-tobacco media messages which is impacting student grades.
+
+
+3) What data are you going to use for this? How will you acquire this data?
+
+This data is available in data.gov and reference link would be provided at the end. The datasets were extracted from Youth Tobacco Surveys from participating states. Tobacco topics included are cigarette smoking prevalence, cigarette smoking frequency, smokeless tobacco products prevalence and quit attempts.
+
+
+4) In brief, outline your approach to solving this problem (knowing that this might change later).
+I will be using one data set named as (Youth_Tobacco_Survey__YTS__Data.csv) which 9794 objects with 31 variables which mainly describes about which year and state was having youth exposed to the tobacco use, exposure to environmental tobacco smoke, smoking cessation, school curriculum, minors' ability to purchase or otherwise obtain tobacco products.
+
+ Data Validation and Analysis:
+
+   1) Clean duplicate entries, missing and invalid data, to prep data for analysis.
+
+   2) Using ggplot or scatter plots still in dillemma.
+   
+   3) Still not decided what model should be used.
+   
+   
+5) Deliverables:
+
+-   Code used for analysis in GitHub
+
+-   Project report outlining the problem, approach and findings (Basically Paper publishing)
+
+-   Slide deck.
+   
+   
+Reference Link: https://catalog.data.gov/dataset/youth-tobacco-survey-yts-data
+
+
+
