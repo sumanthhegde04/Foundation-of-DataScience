@@ -35,20 +35,20 @@ I will be using one data set named as (Youth_Tobacco_Survey__YTS__Data.csv) whic
 
  Data Validation and Analysis:
 
-   1) Clean duplicate entries, missing and invalid data, to prep data for analysis.
+Clean duplicate entries, missing and invalid data, to prep data for analysis.
 
-   2) Using ggplot or scatter plots still in dillemma.
+Using ggplot or scatter plots still in dillemma.
    
-   3) Still not decided what model should be used.
+Still not decided what model should be used.
    
    
-5) Deliverables:
+ Deliverables:
 
--   Code used for analysis in GitHub
+Code used for analysis in GitHub
 
--   Project report outlining the problem, approach and findings (Basically Paper publishing)
+Project report outlining the problem, approach and findings (Basically Paper publishing)
 
--   Slide deck.
+Slide deck.
    
    
 Reference Link: https://catalog.data.gov/dataset/youth-tobacco-survey-yts-data
