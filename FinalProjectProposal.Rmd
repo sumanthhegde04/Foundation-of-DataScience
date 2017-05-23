@@ -13,6 +13,9 @@ Project Name:
 
 Youth Tobacco Survey (YTS)
 
+1) What is the problem you want to solve?
+
+The Problem here is to determine the exposure of tobacco on youth and and to guide the implementation and evaluation of tobacco preven tion and control programmes based on the variables and the objects in the dataset.
 
 
 2) Who is your client and why do they care about this problem? In other words, what will your client DO or DECIDE based on your analysis that they wouldn't have otherwise?
