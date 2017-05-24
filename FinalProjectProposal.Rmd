@@ -33,16 +33,7 @@ This data is available in data.gov and reference link would be provided at the e
 4) In brief, outline your approach to solving this problem (knowing that this might change later).
 I will be using one data set named as (Youth_Tobacco_Survey__YTS__Data.csv) which 9794 objects with 31 variables which mainly describes about which year and state was having youth exposed to the tobacco use, exposure to environmental tobacco smoke, smoking cessation, school curriculum, minors' ability to purchase or otherwise obtain tobacco products.
 
- Data Validation and Analysis:
-
-Clean duplicate entries, missing and invalid data, to prep data for analysis.
-
-Using ggplot or scatter plots still in dillemma.
-   
-Still not decided what model should be used.
-   
-   
- Deliverables:
+Deliverables:
 
 Code used for analysis in GitHub
 
