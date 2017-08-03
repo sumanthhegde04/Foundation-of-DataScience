@@ -1,0 +1,58 @@
+---
+title: "Capstone_milestone_Report1"
+author: "Rstudio"
+date: "August 2, 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(readr)
+library(ggplot2)
+```
+
+## R Markdown
+Max,
+
+I did further investigations and clean the data most of the part. Below are the certain results I would have attached and mentioned also.
+
+1) Removed Na's from the dataset.
+2) Removed unwanted columns and data from the dataset.
+3) Now the data set is reduced to 7548 obs. of  13 variables.
+
+```{r}
+summary(Youth_Tobacco_Survey_YTS_Data)
+
+
+```
+
+## Including Plots
+
+Plots inference:
+1) I did box plot for character variables which I have attached below. I am not able to distinguish the data inference from the below graphs. Could you please help me which variables would be more helpful in the box plot.
+
+2) I did geom_point with geom_smooth with method as lm, using ggplot. Below are the files I have attached.
+
+What I Inferred is 
+
+a) High confidence limit is increase with the low confidence limit, graph has been attached.
+b) I was not able to understand between sample Vs Data_value.
+c) I was able to Understand little bit about Data_value Vs Data_value_std_error.
+
+```{r pressure, echo=FALSE}
+ggplot(Youth_Tobacco_Survey_YTS_Data, aes(x=Youth_Tobacco_Survey_YTS_Data$Data_Value, y=Youth_Tobacco_Survey_YTS_Data$Data_Value_Std_Err)) + geom_point() + geom_smooth(method = "lm")
+
+ggplot(Youth_Tobacco_Survey_YTS_Data, aes(x=Youth_Tobacco_Survey_YTS_Data$Data_Value, y=Youth_Tobacco_Survey_YTS_Data$Sample_Size)) + geom_point() + geom_smooth(method = "lm")
+
+ggplot(Youth_Tobacco_Survey_YTS_Data, aes(x=Youth_Tobacco_Survey_YTS_Data$High_Confidence_Limit, y=Youth_Tobacco_Survey_YTS_Data$Low_Confidence_Limit)) + geom_point() + geom_smooth(method = "lm")
+
+
+ggplot(Youth_Tobacco_Survey_YTS_Data, aes(x = Youth_Tobacco_Survey_YTS_Data$MeasureDesc,y = Youth_Tobacco_Survey_YTS_Data$TopicDesc)) + geom_boxplot()
+
+ggplot(Youth_Tobacco_Survey_YTS_Data, aes(x = Youth_Tobacco_Survey_YTS_Data$TopicDesc,y = Youth_Tobacco_Survey_YTS_Data$Response)) + geom_boxplot()
+
+ggplot(Youth_Tobacco_Survey_YTS_Data, aes(x = Youth_Tobacco_Survey_YTS_Data$Gender,y = Youth_Tobacco_Survey_YTS_Data$Education)) + geom_boxplot()
+```
