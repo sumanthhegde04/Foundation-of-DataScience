@@ -1,0 +1,58 @@
+---
+title: "FinalProjectProposal"
+author: "Rstudio"
+date: "August 16, 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Project Name:
+
+Video Game Sales with Ratings(Video game analysis)
+
+1.What is the problem you want to solve?
+
+Video Game is an electronic game that is played on electronic medium devices such as personal computer, TV screen, gaming console or mobile phone. Some time the Video Game industry is called the interactive entertainment industry.The problem I am going address here is the analysis on video game sales based on their ratings. I will also try to explore the problem faced by video game industry i.e. which game trends the most highest ratings.
+
+2. Who is your client and why do they care about this problem? In other words, what will your client DO or DECIDE based on your analysis that they wouldn't have otherwise?
+
+vgchartz is the client who would be benefit and  this data set simply extends the number of variables with another web scrape from Metacritic. Unfortunately, there are missing observations as Metacritic only covers a subset of the platforms.The problem is mainly to choose which is the best metacritic game based on the analysis of ratings.
+
+My goal of project is to visualize the data set and practice exploratory analysis of data set. For the better understanding I have analyzed the data by some histograms and plot, which will help us to know the trend of the industry. I used some statistical methods to fit the data set and predict the sales.
+
+3. What data are you going to use for this? How will you acquire this data?
+ I would be collecting data set from the scrape from vgchartz.com and also motivated by Gregory Smith's web scrape of VGChartz Video Games Sales.This dataset contains a list of video games with sales greater than 100,000 copies. 
+Context of variables:
+
+Rank - Ranking of overall sales
+Name - The games name
+Platform - Platform of the games release (i.e. PC,PS4, etc.)
+Year - Year of the game's release
+Genre - Genre of the game
+Publisher - Publisher of the game
+NA_Sales - Sales in North America (in millions)
+EU_Sales - Sales in Europe (in millions)
+JP_Sales - Sales in Japan (in millions)
+Other_Sales - Sales in the rest of the world (in millions)
+Global_Sales - Total worldwide sales.
+Critic_score - Aggregate score compiled by Metacritic staff
+Critic_count - The number of critics used in coming up with the Critic_score
+User_score - Score by Metacritic's subscribers
+Developer - Party responsible for creating the game
+
+4. In brief, outline your approach to solving this problem (knowing that this might change later).
+
+This data set consists of 16719 objects 16 variables. I will be performing clean EDA analysis and planning to go with the Linear regression model.
+
+Deliverables:
+
+Code used for analysis in GitHub
+
+Referrences:
+http://www.vgchartz.com/
+https://github.com/GregorUT/vgchartzScrape
+https://github.com/wtamu-cisresearch/scraper,
+
