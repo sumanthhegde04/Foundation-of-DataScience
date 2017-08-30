@@ -1,0 +1,153 @@
+---
+title: "MilestoneReport one"
+author: "Rstudio"
+date: "August 21, 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r video game}
+
+Data Cleaning:
+  
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(tidyr)
+library(gridExtra)
+library(corrplot)
+library(corrgram)
+
+Comments :
+
+#Data Preparation and Data Cleaning
+#we may consider to change the Year_of_Release, User_Score,columns into numeric
+#we may consider to change the Name,Platform,Genre,Publisher into factor
+#NA values titles which cannot be released right now are dropped.
+
+videogame$Name=as.factor(as.character(videogame$Name))
+videogame$Platform=as.factor(as.character(videogame$Platform))
+videogame$Genre=as.factor(as.character(videogame$Genre))
+videogame$Publisher=as.factor(as.character(videogame$Publisher))
+videogame$Year=as.numeric(as.character(videogame$Year_of_Release))
+
+ #List available platforms
+levels(videogame$Platform)
+
+#create new vectors to regroup the Platform by manufacturers
+Nintendoplatform = c("3DS","DS","GB","GBA","N64","GC", "NES","SNES","Wii","WiiU")
+SonyVplatform = c("PS","PS2","PSP","PS3","PS4","PSV")
+SegaVplatform = c("GEN","SCD","DC","GG")
+MicrosoftVplatform = c("XB","X360", "XOne")
+OtherVplatform = c("2006","3DO","NG","PCFX","TG16")
+
+newPlatform<-function(x){
+    if (x %in% SonyVplatform == TRUE) {return('SONY Platform')}
+    else if(x %in%MicrosoftVplatform == TRUE) {return('MICROSOFT Platform')}
+    else if(x %in% Nintendoplatform == TRUE) {return('NINTENDO Platform')}
+    else if(x %in% SegaVplatform == TRUE) {return('SEGA Platform')}
+    else if(x %in% OtherVplatform == TRUE) {return('OTHER Platform')} 
+    else{return('New generations')}
+}
+
+videogame$newPlatform<-sapply(videogame$Platform, newPlatform)  
+
+#Correlation of the sales Factor
+
+num_Sales=videogame[,c("NA_Sales","EU_Sales","JP_Sales","Other_Sales","Global_Sales")]
+cor(num_Sales)
+
+#             NA_Sales  EU_Sales  JP_Sales Other_Sales Global_Sales
+NA_Sales     1.0000000 0.8418076 0.4686074   0.7267571    0.9557934
+EU_Sales     0.8418076 1.0000000 0.5199289   0.7163297    0.9393130
+JP_Sales     0.4686074 0.5199289 1.0000000   0.3948231    0.6135456
+Other_Sales  0.7267571 0.7163297 0.3948231   1.0000000    0.8040276
+Global_Sales 0.9557934 0.9393130 0.6135456   0.8040276    1.0000000
+#Inference:From the correlation table it is observed that the NA_Sales (0.94), EU_Sales (0.9) and Other_Sales (0.75) are highly positive correlated with the Global_Sales. Although Global_Sales is correlated with the all Sales regions.
+
+
+# From Correlation and top 10 revenue games, I am planning for Prediction algorithm for the future data set.
+
+
+```
+
+
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+
+#Histogram of frequency of the game by year
+hist(videogame$Year="blue",xlab = "Year",ylab = "Frequency of the game", main = "Histogram of frequency of the game by year")
+#Conclusion: Maximum types of game has been found on 2008 and 2009.
+
+#2 Histogram of Global sales of the game by year
+aggregate_revenue=aggregate(Global_Sales~Year,videogame,sum)
+plot(aggregate_revenue,type='h',xlab="Year",ylab="Global Sales",col = "green", lwd = 8, main = "Global Sales per year")
+#Inference : Observation: Total revenue was increasing till 2008 after that it is in declined. Maximum revenue was in 2008 and 2009.
+
+#3 Histogram of Global sales of the game by genre
+
+revenue_by_Genre=aggregate(Global_Sales~Genre,videogame,sum)
+arrange_by_Genre=arrange(revenue_by_Genre,desc(Global_Sales))
+arrange_by_Genre$Genre = factor(arrange_by_Genre$Genre, levels = arrange_by_Genre$Genre)
+ggplot(arrange_by_Genre,aes(Genre,Global_Sales)) + 
+  geom_bar(fill="blue",stat = "identity") +
+  ggtitle("Video Game - Global Sales by Genre")
+
+#Inference : Action type of game is more popular and it generates the maximum revenue. Second highest sales generating game is Sports type followed by Shooter, Role-Playing, Platform, Misc, Racing, Fighting, Simulation, Puzzle, Adventure and Strategy.
+
+
+#4 Histogram of top 10 Publisher by revenue
+revenue_of_Publisher=aggregate(Global_Sales~Publisher,videogame,sum)
+arrange_Revenue_of_Publisher_by_Global_Sales=arrange(revenue_of_Publisher,desc(Global_Sales))
+top_10=arrange_Revenue_of_Publisher_by_Global_Sales[1:10,]
+#plot(factor(top_10$Publisher),top_10$Global_Sales,type='h',lwd = 8,xlab="Publisher",ylab="Global Sales",col = "red",main = "Top 10 Publishers by Revenue")
+ggplot(top_10,aes(Publisher,Global_Sales, fill=Publisher))+
+  geom_bar(stat = "identity")+
+  ggtitle("Top 10 Publisher by Revenue") +
+  theme(legend.position = "top")
+
+#Inference : Nintendo is a top publisher followed by Electronic Arts, Activision, Sony Computer Entertainment, Ubisoft, Take-Two Interactive, THQ, Konami Digital Entertainment, Sega and Namco Bandai Games.
+
+#5 Top 10 game by Revenue in each year
+
+arrange_by_Year_and_Name=videogame %>%
+  group_by(Year, Name) %>%
+  summarize(Toal_Global_Sales = sum(Global_Sales)) %>%
+  arrange(desc(Toal_Global_Sales)) %>%
+  top_n(1)
+top10_revenue_by_Year_and_Name=arrange_by_Year_and_Name[1:10,]
+ggplot(top10_revenue_by_Year_and_Name,aes(x=as.factor(Year),Toal_Global_Sales,fill=Name))+
+  geom_bar(stat = "identity")+
+  ggtitle("Top 10 Games by Revenue each year") +
+  theme(legend.position = "top")
+
+# Inference : Wii Sports is the top performer on 2006 and it generates the revenue globally 82.74 million dollars followed by Super Mario Bros (In 1985 -  40.24m)andGrandTheftAutoV(In2013 - 37.78m)
+
+
+#6 effect of the outlier on the data's visualization
+ggplot(data=videogame,aes(x=factor(Year),y=Global_Sales)) + geom_boxplot(aes(fill=factor(newPlatform))) + theme(legend.position=c(.8, .65)) + theme(axis.text.x = element_text(angle=90, hjust=1))
+
+#7 Data's visualization with outlier removed and Y axis rescales.
+ggplot(data=videogame,aes(x=factor(Year),y=Global_Sales)) + geom_boxplot(aes(fill=factor(newPlatform)),outlier.shape=NA)+ ylim(0,6) + theme(legend.position=c(.8, .65)) +  theme(axis.text.x = element_text(angle=90, hjust=1))
+
+# Inference : Comments :from a visualization point of view, the last plot (NA's removed, no outlier) is the best one but it's a bit of cheatingMetacritic was launched in 1999 so technically a user score, metacritic score have less meaning when looking at the scores.
+
+
+
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
