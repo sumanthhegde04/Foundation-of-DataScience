@@ -2,10 +2,12 @@
 title: "MilestoneReport one"
 author: "Rstudio"
 date: "August 21, 2017"
-output: pdf_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -83,11 +85,12 @@ Global_Sales 0.9557934 0.9393130 0.6135456   0.8040276    1.0000000
 
 You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r videogame, echo=TRUE}
 
 #Histogram of frequency of the game by year
-hist(videogame$Year="blue",xlab = "Year",ylab = "Frequency of the game", main = "Histogram of frequency of the game by year")
+
+hist(videogame$Year,col="blue",xlab = "Year",ylab = "Frequency of the game", main = "Histogram of frequency of the game by year")
+
 #Conclusion: Maximum types of game has been found on 2008 and 2009.
 
 #2 Histogram of Global sales of the game by year
